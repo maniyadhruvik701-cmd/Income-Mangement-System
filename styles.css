@@ -1,0 +1,548 @@
+:root {
+    --primary: #6c5ce7;
+    --secondary: #a29bfe;
+    --accent: #ff7675;
+    --bg-dark: #0f0c29;
+    --bg-dark-2: #302b63;
+    --bg-dark-3: #24243e;
+    --text-light: #ffffff;
+    --text-muted: #e0e0e0;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-dark-2), var(--bg-dark-3));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    color: var(--text-light);
+    position: relative;
+}
+
+/* App Title */
+.app-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 40px;
+    z-index: 10;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(108, 92, 231, 0.5), 0 0 40px rgba(162, 155, 254, 0.3);
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 20px rgba(108, 92, 231, 0.5), 0 0 40px rgba(162, 155, 254, 0.3);
+    }
+
+    50% {
+        text-shadow: 0 0 30px rgba(108, 92, 231, 0.8), 0 0 60px rgba(162, 155, 254, 0.5);
+    }
+}
+
+/* Language Selector */
+.language-selector {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 100;
+}
+
+.language-selector select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-light);
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    outline: none;
+    transition: all 0.3s;
+}
+
+.language-selector select:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent);
+}
+
+.language-selector select option {
+    background: var(--bg-dark-2);
+    color: var(--text-light);
+}
+
+/* Moving Background Shapes */
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 10s infinite ease-in-out;
+}
+
+.shape-1 {
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    top: 40%;
+    left: 40%;
+    width: 300px;
+    height: 300px;
+    background: var(--secondary);
+    border-radius: 50%;
+    animation-delay: -2s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.1);
+    }
+}
+
+/* Main Container - The Glass Card */
+.container {
+    background: var(--glass-bg);
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+    min-height: 600px;
+    z-index: 1;
+    transition: transform 0.6s ease-in-out;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+}
+
+@keyframes show {
+
+    0%,
+    49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+/* Overlay / Slider */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.overlay {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #ffffff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+/* Form Styles */
+form {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+    color: var(--text-light);
+}
+
+h1 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+    color: var(--text-muted);
+}
+
+span {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 10px 0;
+}
+
+.forgot-password {
+    color: var(--text-muted);
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+    transition: 0.3s;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    align-self: flex-start;
+    padding-left: 2px;
+}
+
+.remember-me input {
+    width: 16px !important;
+    height: 16px !important;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.remember-me label {
+    font-size: 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+a {
+    color: var(--text-light);
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+/* Inputs & Buttons */
+.input-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    color: var(--text-light);
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 118, 117, 0.3);
+}
+
+button {
+    border-radius: 50px;
+    border: 1px solid var(--accent);
+    background-color: var(--accent);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in, box-shadow 0.3s;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover {
+    box-shadow: 0 5px 15px rgba(255, 118, 117, 0.4);
+}
+
+button.ghost {
+    background-color: transparent;
+    border-color: #ffffff;
+    margin-top: 20px;
+}
+
+button.ghost:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Social Icons Placeholder */
+.social-container {
+    margin: 20px 0;
+}
+
+.social {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+    color: var(--text-light);
+    transition: all 0.3s;
+}
+
+.social:hover {
+    background-color: var(--text-light);
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+/* Footer Links */
+.footer-links {
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.footer-links a {
+    margin: 0 5px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-links a:hover {
+    color: var(--text-light);
+    text-decoration: underline;
+}
+
+.legal-footer {
+    position: absolute;
+    bottom: 20px;
+    z-index: 10;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+}
+
+.legal-footer a {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.separator {
+    margin: 0 10px;
+}
+
+.mobile-only,
+.mobile-toggle {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        border: none;
+        flex-direction: column;
+    }
+
+    .form-container {
+        width: 100%;
+        position: relative;
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .sign-in-container,
+    .sign-up-container {
+        width: 100%;
+        left: 0;
+    }
+
+    .overlay-container {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: block;
+        margin-top: 15px;
+    }
+
+    /* Fallback for mobile: Stack them or use JS to simple toggle visibility */
+    /* For this sliding design, the overlay logic breaks on vertical stack. 
+       Let's stick to the sliding logic but make the container fit the screen. 
+       Actually, standard sliding login/signup is hard on mobile. 
+       Let's just hide the sign-up container by default and use a button to toggle 'active' state 
+       but modify CSS to handle vertical stacking or simpler toggle. 
+       
+       For this specific iteration, I'll rely on the desktop sliding effect. 
+       On mobile, I will make the 'Ghost' buttons visible inline or use a different approach.
+    */
+
+    .container.right-panel-active .sign-in-container {
+        display: none;
+    }
+
+    .sign-up-container {
+        display: none;
+        opacity: 1;
+        z-index: 5;
+    }
+
+    .container.right-panel-active .sign-up-container {
+        display: flex;
+        /* or block */
+        transform: none;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+}

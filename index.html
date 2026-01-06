@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure and stylish login page for access to premium features. Join us today.">
+    <title>Login | FinTrack</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="gu">ગુજરાતી (Gujarati)</option>
+            <option value="hi">हिंदी (Hindi)</option>
+        </select>
+    </div>
+
+    <h1 class="app-title" data-translate="appTitle">Income Management System</h1>
+
+    <!-- Main Container -->
+    <div class="container" id="container">
+        <!-- Sign Up Form Section -->
+        <div class="form-container sign-up-container">
+            <form action="#" id="signupForm">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social" id="google-signup" title="Sign up with Google"><i
+                            class="icon-google"></i>G</a>
+                    <a href="#" class="social"><i class="icon-linkedin"></i>in</a>
+                    <a href="#" class="social"><i class="icon-github"></i>gh</a>
+                </div>
+                <span>or use your email for registration</span>
+                <div class="input-group">
+                    <input type="text" placeholder="Username" id="signup-username" required />
+                    <input type="email" placeholder="Email" id="signup-email" required />
+                    <input type="password" placeholder="Password" id="signup-password" required />
+                </div>
+                <button type="submit" class="btn-primary">Sign Up</button>
+                <div class="mobile-toggle">
+                    Already have an account? <a href="#" id="signInMobile">Sign In</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Sign In Form Section -->
+        <div class="form-container sign-in-container">
+            <form action="#" id="loginForm">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social" id="google-signin" title="Sign in with Google"><i
+                            class="icon-google"></i>G</a>
+                    <a href="#" class="social"><i class="icon-linkedin"></i>in</a>
+                    <a href="#" class="social"><i class="icon-github"></i>gh</a>
+                </div>
+                <span>or use your account</span>
+                <div class="input-group">
+                    <input type="text" placeholder="Email / Username" id="login-identifier" required
+                        list="saved-emails" />
+                    <datalist id="saved-emails"></datalist>
+                    <input type="password" placeholder="Password" id="login-password" required />
+                </div>
+                <div class="remember-me">
+                    <input type="checkbox" id="remember-checkbox">
+                    <label for="remember-checkbox" data-translate="rememberMe">Remember Me</label>
+                </div>
+                <a href="#" class="forgot-password">Forgot your password?</a>
+                <button type="submit" class="btn-primary">Sign In</button>
+                <div class="mobile-toggle">
+                    Don't have an account? <a href="#" id="signUpMobile">Sign Up</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Overlay Container for Animation -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Stranger!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-footer desktop-only">
+        <a href="#" data-translate="termsConditions">Terms & Conditions</a>
+        <span class="separator">•</span>
+        <a href="#" data-translate="privacyPolicy">Privacy Policy</a>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="translate-helper.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
