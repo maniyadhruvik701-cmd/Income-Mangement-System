@@ -1,1 +1,1 @@
-it is helpfull in e commarce 
+it is helpfull income mangement
